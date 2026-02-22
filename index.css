@@ -1,0 +1,905 @@
+/* ==========================================================================
+   CSS Variables & Theme Setup
+   Using a Light/Neutral Premium Aesthetic
+   ========================================================================== */
+:root {
+    /* Color Palette - Light & Neutral */
+    --bg-color: #faf9f6;
+    /* Off-white, slightly warm like high-quality paper */
+    --text-main: #1c1c1a;
+    /* Soft black for better readability and elegance */
+    --text-muted: #6b6b66;
+    /* Elegant grey for secondary text */
+    --accent: #d4cfc5;
+    /* Very subtle warm grey for borders and backgrounds */
+    --accent-hover: #1c1c1a;
+    --text-inverse: #faf9f6;
+
+    /* Typography */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, "Times New Roman", serif;
+
+    /* Transitions */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-slow: 0.8s var(--ease-out-expo);
+    --transition-med: 0.5s var(--ease-out-expo);
+    --transition-fast: 0.3s ease;
+
+    /* Spacing */
+    --container-padding: 5vw;
+    --section-spacing: 15vh;
+}
+
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+    background-color: var(--text-main);
+    color: var(--bg-color);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--text-main);
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+/* ==========================================================================
+   Background & Gradient Elements
+   ========================================================================== */
+
+/* The Animated Mesh Gradient Layer with Grid */
+.gradient-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    /* Behinds shapes */
+    background-color: var(--bg-color);
+    /* 'Carpe Diem' Grid + Magenta/Purple/Peach gradient */
+    background-image:
+        linear-gradient(to right, rgba(71, 85, 105, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(71, 85, 105, 0.06) 1px, transparent 1px),
+        radial-gradient(circle at 50% 60%, rgba(236, 72, 153, 0.12) 0%, rgba(168, 85, 247, 0.08) 30%, transparent 60%),
+        radial-gradient(circle at 10% 20%, rgba(234, 210, 198, 0.4) 0%, transparent 40%),
+        radial-gradient(circle at 80% 10%, rgba(198, 206, 214, 0.4) 0%, transparent 40%);
+    background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%, 100% 100%;
+    /* No blur on the container so the crisp grid stays intact */
+}
+
+/* Floating Aesthetic Shapes */
+.shape {
+    position: fixed;
+    border-radius: 50%;
+    /* Orb-like appearance */
+    filter: blur(80px);
+    /* Soft, diffused aesthetic */
+    z-index: -1;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    /* Blends the color beautifully into the light background */
+    opacity: 0.7;
+    /* Gentle presence */
+}
+
+/* Warm terracotta/peach tone */
+.shape-1 {
+    width: 45vw;
+    height: 45vw;
+    background: radial-gradient(circle, rgba(234, 210, 198, 0.9) 0%, transparent 70%);
+    top: -10%;
+    left: -10%;
+    animation: floatShape1 25s ease-in-out infinite alternate;
+}
+
+/* Soft sage/dusty blue tone */
+.shape-2 {
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle, rgba(198, 206, 214, 0.8) 0%, transparent 70%);
+    bottom: -15%;
+    right: -10%;
+    animation: floatShape2 32s ease-in-out infinite alternate;
+}
+
+/* Gentle muted olive tone */
+.shape-3 {
+    width: 30vw;
+    height: 30vw;
+    background: radial-gradient(circle, rgba(214, 218, 200, 0.7) 0%, transparent 70%);
+    top: 40%;
+    left: 60%;
+    animation: floatShape3 28s ease-in-out infinite alternate;
+}
+
+@keyframes floatShape1 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(10vw, 15vh) scale(1.15);
+    }
+}
+
+@keyframes floatShape2 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(-15vw, -10vh) scale(1.2);
+    }
+}
+
+@keyframes floatShape3 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(-15vw, 20vh) scale(1.3);
+    }
+}
+
+/* Floating Sparkles */
+.sparkle {
+    position: fixed;
+    color: var(--text-main);
+    z-index: -1;
+    pointer-events: none;
+    animation: twinkle 4s ease-in-out infinite alternate;
+    opacity: 0.15;
+    /* Subtle and pleasing */
+}
+
+.sparkle-1 {
+    top: 15%;
+    left: 10%;
+    width: 40px;
+    height: 40px;
+    animation-delay: 0s;
+}
+
+.sparkle-2 {
+    top: 65%;
+    right: 12%;
+    width: 50px;
+    height: 50px;
+    animation-delay: 1.5s;
+}
+
+.sparkle-3 {
+    bottom: 20%;
+    left: 25%;
+    width: 35px;
+    height: 35px;
+    animation-delay: 0.8s;
+}
+
+.sparkle-4 {
+    top: 25%;
+    right: 25%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 2.2s;
+}
+
+/* The little one */
+.sparkle-5 {
+    top: 75%;
+    left: 15%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 0.5s;
+}
+
+@keyframes twinkle {
+    0% {
+        transform: scale(0.8) rotate(0deg);
+        opacity: 0.1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: scale(1.1) rotate(15deg);
+        opacity: 0.1;
+    }
+}
+
+.section-padding {
+    padding-top: var(--section-spacing);
+    padding-bottom: var(--section-spacing);
+}
+
+/* ==========================================================================
+   The Grain Effect
+   ========================================================================== */
+/* 
+   We create a pure CSS grain effect.
+   It uses an SVG base64 encoded noise filter applied as a background image.
+   It is fixed, covers the whole screen, and ignores pointer events.
+*/
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    /* Base64 encoded simpler SVG noise, with low frequency for a 'filmic' aesthetic */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    opacity: 0.055;
+    /* Slightly increased to make it feel more tactile over the gradient */
+    mix-blend-mode: multiply;
+    /* Multiplies with the gradient underneath */
+    /* Add a very subtle animation to the grain to make it "alive" if preferred, or keep it static. We will keep static for elegance. */
+}
+
+/* ==========================================================================
+   Aesthetic Marquee Tapes (Animatic Style)
+   ========================================================================== */
+.tape-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 1;
+    /* Behind hero content, above background */
+    pointer-events: none;
+}
+
+.tape {
+    position: absolute;
+    width: 250vw;
+    height: 36px;
+    background-color: var(--text-main);
+    color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    overflow: hidden;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tape-1 {
+    background-color: #ef4444;
+    /* Vivid red like the reference */
+    color: white;
+    top: 12vh;
+    /* Positioned just below nav */
+    left: -10vw;
+    transform: rotate(-1.5deg);
+}
+
+.tape-2 {
+    background-color: #1c1c1a;
+    /* Dark charcoal/black */
+    color: #faf9f6;
+    top: 16vh;
+    /* Positioned just below tape-1 */
+    left: -10vw;
+    transform: rotate(1deg);
+    border-top: 1px dashed #ef4444;
+    /* A little checker/dash detail */
+    border-bottom: 1px dashed #ef4444;
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 15s linear infinite;
+}
+
+.marquee-track.reverse {
+    animation-direction: reverse;
+}
+
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem var(--container-padding);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    mix-blend-mode: difference;
+    /* Beautiful effect when scrolling over mixed content */
+    color: #fff;
+    /* White looks inverted to dark on light background due to difference */
+}
+
+/* Fallback if mix-blend-mode difference acts up on very light backgrounds, 
+   but for this pure aesthetic it often creates a striking dynamic logo */
+@supports not (mix-blend-mode: difference) {
+    .main-nav {
+        color: var(--text-main);
+        mix-blend-mode: normal;
+    }
+}
+
+.nav-brand {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-link {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: currentColor;
+    transition: width var(--transition-fast);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--container-padding);
+    position: relative;
+    padding-top: 10vh;
+    /* space for nav */
+}
+
+.hero-content {
+    max-width: 900px;
+    position: relative;
+    z-index: 2;
+}
+
+.eyebrow {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+    line-height: 1.05;
+}
+
+.ampersand {
+    font-family: var(--font-sans);
+    /* Clean, modern sans-serif ampersand */
+    font-weight: 300;
+    font-style: normal;
+    font-size: 0.9em;
+    color: var(--text-muted);
+    /* Soften it slightly */
+}
+
+.hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: var(--text-muted);
+    max-width: 500px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+    border-bottom: 1px solid var(--text-main);
+    padding-bottom: 8px;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.cta-button .arrow {
+    margin-left: 12px;
+    transition: transform var(--transition-fast);
+}
+
+.cta-button:hover {
+    color: var(--text-muted);
+    border-color: var(--text-muted);
+}
+
+.cta-button:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* Peeking Cat Graphic */
+.peeking-cat {
+    position: absolute;
+    right: -2vw;
+    top: 35vh;
+    /* Shifts the image down to fill the white space on the right side */
+    width: clamp(250px, 40vw, 450px);
+    /* Responsive sizing */
+    z-index: 2;
+    /* Sits above the background but not overpowering text */
+    pointer-events: none;
+    /* So it doesn't block clicks */
+}
+
+@media (max-width: 992px) {
+    .peeking-cat {
+        width: clamp(200px, 50vw, 300px);
+        top: 25vh;
+        opacity: 0.8;
+        /* Slightly more subtle on mobile */
+    }
+}
+
+/* Subtle background shape for the hero */
+.hero-blur-shape {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 50vw;
+    height: 50vw;
+    max-width: 600px;
+    max-height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 207, 197, 0.4) 0%, rgba(250, 249, 246, 0) 70%);
+    filter: blur(60px);
+    z-index: 1;
+    pointer-events: none;
+    animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -50px) scale(1.05);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.95);
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+/* ==========================================================================
+   Works Section
+   ========================================================================== */
+.section-header {
+    margin-bottom: 5rem;
+}
+
+.section-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    margin-bottom: 1rem;
+}
+
+.section-desc {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 3rem;
+    row-gap: 6rem;
+}
+
+.project-card {
+    grid-column: span 12;
+    cursor: pointer;
+}
+
+/* Stagger grid items on desktop */
+@media (min-width: 768px) {
+    .project-card:nth-child(odd) {
+        grid-column: 1 / 8;
+    }
+
+    .project-card:nth-child(even) {
+        grid-column: 6 / 13;
+        margin-top: 15vh;
+        /* Create rhythm */
+    }
+}
+
+.project-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--accent);
+    aspect-ratio: 4/3;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    /* Slight softness to images */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    /* Subtle baseline shadow */
+    transition: box-shadow var(--transition-slow);
+}
+
+@media (min-width: 768px) {
+    .project-card:nth-child(even) .project-image-wrapper {
+        aspect-ratio: 3/4;
+        /* Different aspect ratio for variety */
+    }
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform var(--transition-slow);
+}
+
+/* Beautiful gradient placeholders matching the ethereal vibe */
+.bg-1 {
+    background: linear-gradient(135deg, #e5e0d8 0%, #d5cfc4 100%);
+}
+
+.bg-2 {
+    background: linear-gradient(135deg, #d1d5db 0%, #c1c5cc 100%);
+}
+
+.bg-3 {
+    background: linear-gradient(135deg, #dfd8d0 0%, #cfc8bd 100%);
+}
+
+.bg-4 {
+    background: linear-gradient(135deg, #e8dfeb 0%, #d8cedb 100%);
+    /* Slight mauve tint */
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(28, 28, 26, 0.3);
+    /* Slightly darker for better text contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity var(--transition-med);
+}
+
+.project-view-text {
+    color: var(--text-inverse);
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    padding: 1rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50px;
+    transform: translateY(20px) scale(0.95);
+    transition: transform var(--transition-med), background-color var(--transition-fast), color var(--transition-fast);
+    backdrop-filter: blur(4px);
+}
+
+.project-card:hover .project-image-wrapper {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    /* Elevated shadow on hover */
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.04);
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-card:hover .project-view-text {
+    transform: translateY(0) scale(1);
+}
+
+.project-view-text:hover {
+    background-color: var(--text-inverse);
+    color: var(--text-main);
+}
+
+.project-name {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-category {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   About Section
+   ========================================================================== */
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+@media (min-width: 992px) {
+    .about-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 8rem;
+    }
+}
+
+.about-text p {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    margin-bottom: 2rem;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+.about-text p:first-of-type {
+    color: var(--text-main);
+}
+
+.text-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+    border-bottom: 1px solid var(--text-main);
+    padding-bottom: 4px;
+    margin-top: 2rem;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.text-link .arrow {
+    margin-left: 8px;
+    transition: transform var(--transition-fast);
+}
+
+.text-link:hover {
+    color: var(--text-muted);
+    border-color: var(--text-muted);
+}
+
+.text-link:hover .arrow {
+    transform: translateX(5px);
+}
+
+.about-image {
+    aspect-ratio: 3/4;
+    background-color: var(--accent);
+    width: 100%;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer {
+    background-color: var(--text-main);
+    color: var(--bg-color);
+    padding: var(--section-spacing) 0 4rem 0;
+}
+
+.footer-cta {
+    margin-bottom: 10vh;
+}
+
+.footer-title {
+    font-size: clamp(3rem, 7vw, 6rem);
+    color: var(--bg-color);
+    margin-bottom: 2rem;
+}
+
+.email-link {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: var(--bg-color);
+    font-weight: 300;
+    border-bottom: 1px solid rgba(250, 249, 246, 0.3);
+    padding-bottom: 10px;
+    transition: border-color var(--transition-fast);
+}
+
+.email-link:hover {
+    border-color: var(--bg-color);
+}
+
+.footer-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-top: 1px solid rgba(250, 249, 246, 0.1);
+    padding-top: 2rem;
+}
+
+@media (min-width: 768px) {
+    .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.copyright {
+    color: rgba(250, 249, 246, 0.5);
+    font-size: 0.9rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.social-link {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.social-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: currentColor;
+    transition: width var(--transition-fast);
+}
+
+.social-link:hover::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   Animations & Reveal Classes
+   ========================================================================== */
+
+/* Initial states for JS observer */
+.fade-in {
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+}
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.slide-down {
+    transform: translateY(-100%);
+    animation: slideDown 1s var(--ease-out-expo) forwards;
+    animation-delay: 0.2s;
+}
+
+/* Active states added by JS */
+.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Delays via inline styles (e.g., --delay: 0.2s) */
+[style*="--delay"] {
+    transition-delay: var(--delay);
+}
+
+@keyframes slideDown {
+    to {
+        transform: translateY(0);
+    }
+}
