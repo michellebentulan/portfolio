@@ -445,7 +445,7 @@ h6 {
     align-items: center;
     padding: 0 var(--container-padding);
     position: relative;
-    padding-top: 10vh;
+    padding-top: 13vh;
     /* space for nav */
 }
 
@@ -517,7 +517,7 @@ h6 {
 .peeking-cat {
     position: absolute;
     right: -2vw;
-    top: 35vh;
+    top: 25vh;
     /* Shifts the image down to fill the white space on the right side */
     width: clamp(250px, 40vw, 450px);
     /* Responsive sizing */
@@ -777,13 +777,12 @@ h6 {
 }
 
 .about-image {
-    aspect-ratio: 3/4;
-    background-color: var(--accent);
     width: 100%;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 4px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    max-height: 83vh;
+    object-fit: contain;
+    object-position: center;
+    background-color: transparent;
+    transform: translateY(-8rem);
 }
 
 /* ==========================================================================
